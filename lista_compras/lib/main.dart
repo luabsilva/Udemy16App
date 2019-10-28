@@ -83,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
+        elevation: 20.0,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -105,26 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   RaisedButton(
                     color: Colors.blueAccent,
                     child: Text("ADD"),
-                    onPressed: () {},
+                    onPressed: _addToDo,
                   ),
                 ],
               ),
-            
-            
             ),
-            
-            ListTile(
-              
-              
-              
-              
-              child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10.0),
-                  itemCount: _toDoList.length,
-                  itemBuilder: buildItem),
-            ),
-            )  
-            
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: _refresh,
+                child: ListView.builder(
+                    padding: EdgeInsets.only(top: 10.0),
+                    itemCount: _toDoList.length,
+                    itemBuilder: buildItem),
+              ),
+            )
           ],
         ),
       ),
